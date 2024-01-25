@@ -8,20 +8,13 @@ public class Main {
     public static int[] sumParts(int[] ls) {
         int[] sum = new int[ls.length + 1];
 
-        for (int i = 0; i <= ls.length; i++) {
-            int num = 0;
-
-            if (i == ls.length) {
-                sum[i] = 0;
-            } else {
-
-                for (int index = i; index < ls.length; index++) {
-                    num = num + ls[index];
-                }
-                sum[i] = num;
-            }
+        for (int i = 0; i < ls.length; i++) {
+            sum[i] = Arrays.stream(ls).reduce(0, Integer::sum);
+            
+            ls[i] = 0;
         }
-
+        sum[ls.length] = 0;
+        
         return sum;
     }
 }
